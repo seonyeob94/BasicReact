@@ -1,9 +1,0 @@
-class Vehicle{
-	constructor(){
-		this.speed = 0;
-	}
-	
-	exel() {
-		this.speed++;
-	}
-}

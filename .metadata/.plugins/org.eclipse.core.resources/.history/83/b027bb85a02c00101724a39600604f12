@@ -1,5 +1,0 @@
-var jumsu = 95;
-
-if(jumsu>90){
-	console.log("수");
-}
