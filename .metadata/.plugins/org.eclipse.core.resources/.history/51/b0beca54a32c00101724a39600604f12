@@ -1,0 +1,8 @@
+// 1에서 부터 10까지의 합
+
+for(var a= 1;a<=10;a++){
+	sum=+a;
+	
+	
+	console.log(sum);
+}

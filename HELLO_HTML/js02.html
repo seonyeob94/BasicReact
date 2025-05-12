@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#it{
+	width: 30px;
+}
+</style>
+<script type="text/javascript">
+function handle(){
+	var input =document.getElementById("it");
+	  let currentValue = parseInt(input.value);    // 문자열을 숫자로 변환
+      input.value = currentValue + 1;           
+}
+</script>
+</head>
+<body>
+	<input type="text" id="it" value="100"/>
+	<button onclick="handle()">INCREASE</button>
+</body>
+</html>

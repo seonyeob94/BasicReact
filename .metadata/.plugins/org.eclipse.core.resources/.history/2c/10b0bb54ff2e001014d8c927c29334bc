@@ -1,0 +1,6 @@
+class{
+	constructor(){
+		speed = 0;
+	}
+	
+}

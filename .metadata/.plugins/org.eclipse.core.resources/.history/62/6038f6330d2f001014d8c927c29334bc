@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#it{
+	width:  40px;
+}
+</style>
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", () => {
+	const input = document.getElementById("it");
+	const tarea = document.getElementById("ta");
+	
+	str ="";
+	for(var i;i<=0;i++){
+		str +=input*i;
+	}
+	
+	const btn = document.querySelector("button");
+	 btn.addEventListener("click", () => {
+		 tarea.innerHTML = str;
+		  });
+})
+</script>
+</head>
+<body>
+	<table border="1px">
+		<tr>
+			<td>출력단수</td>
+			<td>
+				<input type="text" id="it">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="button" value="출력하기" />
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<textarea rows="13" cols="17" id="ta"></textarea>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

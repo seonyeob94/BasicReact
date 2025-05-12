@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	document.addEventListener("DOMContentLoaded", () => {
+		  // HTML 로딩 완료 후 실행
+		  const span = document.getElementById("myspan");
+		  const btn = document.querySelector("button");
+	
+		  btn.addEventListener("click", () => {
+		    span.innerHTML = "Good Evening";
+		  });
+		});
+</script>
+</head>
+<body>
+	<span id="myspan">Good Morning</span>
+	<button >CLICK</button>
+</body>
+</html>

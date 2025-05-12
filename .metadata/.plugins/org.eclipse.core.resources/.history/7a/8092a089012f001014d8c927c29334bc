@@ -1,0 +1,14 @@
+
+const Behicle = require('./vehicle');
+
+class maker extends Behicle{
+	constructor(){
+		super();
+		this.speed = 0;
+	}
+	
+	excel() {
+		this.speed++;
+	}
+}
+

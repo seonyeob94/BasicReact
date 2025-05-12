@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#it{
+	width: 30px;
+}
+</style>
+<script type="text/javascript">
+function click(){
+	var inc =document.getElementById("it");
+	console.log(inc)
+}
+</script>
+</head>
+<body>
+	<input type="text" id="it" value="100"/>
+	<button onclick="click()">INCREASE</button>
+</body>
+</html>

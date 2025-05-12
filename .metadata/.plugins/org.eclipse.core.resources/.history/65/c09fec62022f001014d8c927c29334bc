@@ -1,0 +1,26 @@
+
+const Vehicle = require('./vehicle');
+
+class Maker extends Vehicle{
+	 constructor(mn) {
+	    super();                // 부모 클래스 생성자 호출
+	    this.maker_name = "mn";   // 생성자 매개변수로 제조사 이름 설정
+  }
+
+  byeACar(mn) {
+    this.maker_name = mn;   // 제조사 이름 변경
+  }
+}
+
+// 테스트 코드
+if (require.main === module) {
+  const mk = new Maker("기아");
+  console.log("speed:", mk.speed);         // 0
+  console.log("maker:", mk.maker_name);    // 기아
+
+  mk.excel();
+  mk.byeACar("포르쉐");
+
+  console.log("speed:", mk.speed);         // 1
+  console.log("maker:", mk.maker_name);    // 포르쉐
+}
