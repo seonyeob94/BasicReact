@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.its{
+	width : 30px;
+}
+</style>
+<script type="text/javascript">
+	function myclick(){
+		var it1 =document.getElementById("it1");
+		var it2 =document.getElementById("it2");
+		var it3 =document.getElementById("it3");
+		
+		var it1_value=it1.value;
+		console.log(it1_value);
+		var it2_value=it2.value;
+		console.log(it2_value);
+		
+		it3.value =it1_value*it2_value;
+		
+	}
+	
+	function myclick1(){
+		var its =document.getElementsClassName("its");
+		
+		var a=its[0].value;
+		var b=its[1].value;
+		
+		var aa=parseInt(a);
+		var bb=parseInt(b);
+		console.log(a,aa,b,bb);
+		var mul = aa*bb;
+		
+		its[2].value = mul;
+		
+	}
+</script>
+</head>
+<body>
+	<input type="text" class="its" id="it1"/>
+	*
+	<input type="text" class="its" id="it2" />
+	<button onclick="myclick1()">=</button>
+	<input type="text" class="its" id="it3" />
+</body>
+</html>

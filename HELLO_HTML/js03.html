@@ -28,6 +28,23 @@ document.addEventListener("DOMContentLoaded", () => {
 		  
 		  });
 })
+
+function myclick(){
+	var obj_it = document.querySelector("#it");
+	var obj_ta = document.querySelector("#ta");
+	var dan = obj_it.value;
+	var idan = parseINt(dan);
+		
+	var txt = "";
+	for(var i=1; i<=9;i++){
+		
+		txt +=dan+"*"+i+"="+(dan*i)+"\n";
+	}
+	
+	obj_ta.value = txt;
+}
+
+
 </script>
 </head>
 <body>

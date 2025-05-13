@@ -10,9 +10,18 @@
 </style>
 <script type="text/javascript">
 function handle(){
-	var input =document.getElementById("it");
-	  let currentValue = parseInt(input.value);    // 문자열을 숫자로 변환
-      input.value = currentValue + 1;           
+	
+	/* var input =document.getElementById("it");
+	console.log(input);
+	var currentValue = parseInt(input.value);    // 문자열을 숫자로 변환
+	
+      input.value = currentValue + 1; */ 
+	
+	var obj_it = document.getElementById("it");
+	var a= obj_it.value;
+	var aa = parseInt(a);
+	aa++;
+	obj_it.value = aa;
 }
 </script>
 </head>

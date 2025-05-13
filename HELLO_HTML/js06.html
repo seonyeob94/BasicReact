@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#it_mine,#it_com,#it_result{
+	width : 30px;
+}
+</style>
+<script type="text/javascript">
+/* 	function myclick(){
+		var mine =document.getElementById("it_mine");
+		var com =document.getElementById("it_com");
+		var res =document.getElementById("it_result");
+		var rand = parseInt(Math.random()+0.5);
+		//console.log(rand);
+		if(mine==1){
+			mine.value="홀";
+		}
+		else mine.value="짝";
+		console.log(com);
+		console.log(mine);
+		if(rand==1){
+			com.value="홀";
+		}
+		else {
+			com.value="짝";
+		}
+		
+		
+		if(mine===com){
+			res.value="이겼다"
+		}
+		else res.value="졌다"
+			console.log(com);
+			console.log(mine);
+	} */
+	
+	function myclick(){
+		
+		var obj_mine =document.getElementById("it_mine");
+		var obj_com =document.getElementById("it_com");
+		var obj_res =document.getElementById("it_result");
+		
+		var mine = obj_mine.value;
+		var com = "";
+		var res = "";
+		
+		var rnd = Math.random();
+		if(rnd>0.5){
+			com="홀";
+		}
+		else{
+			com="짝";
+		}
+		
+		if(mine==com){
+			res="이김";
+		}
+		else{
+			res="짐";
+		}
+		obj_com.value = com;
+		obj_res.value = res;
+		
+	}
+	
+</script>
+</head>
+<body>
+	<table border="1">
+		<tr>
+			<td>나</td>
+			<td>
+				<input type="text" id="it_mine">
+			</td>
+		</tr>
+		<tr>
+			<td>컴</td>
+			<td>
+				<input type="text" id="it_com">
+			</td>
+		</tr>
+		<tr>
+			<td>결과</td>
+			<td>
+				<input type="text" id="it_result">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input onclick="myclick()" type="button" value="게임하기">	
+			</td>
+			
+		</tr>
+	</table>
+</body>
+</html>

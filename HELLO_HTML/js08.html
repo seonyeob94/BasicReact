@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#it{
+	width: 100px;
+}
+.btn{
+	width : 32px;
+}
+#btn_call{
+	width : 60px;
+}
+</style>
+<script type="text/javascript">
+
+function mycall(bt){
+	var btn = document.getElementById("it");
+
+	var str_new = bt.value;
+
+	
+	console.log(str_new);
+	
+	btn.value += str_new;
+	console.log(btn.value);
+	
+
+	
+}
+
+function myclick(){
+	var btn = document.getElementById("it");
+	
+	alert(btn.value+"전화거는중");
+}
+
+
+	
+</script>
+</head>
+<body>
+	<table border="1px">
+		<tr>
+			<td colspan="3">
+				<input type="text" id="it"/>
+			</td>
+		</tr>
+		<tr>
+			<td><input type="button" value="1" class="btn" onclick="mycall(this)"/></td>
+			<td><input type="button" value="2" class="btn" onclick="mycall(this)"/></td>
+			<td><input type="button" value="3" class="btn" onclick="mycall(this)"/></td>
+		</tr>
+		<tr>
+			<td><input type="button" value="4" class="btn" onclick="mycall(this)"/></td>
+			<td><input type="button" value="5" class="btn" onclick="mycall(this)"/></td>
+			<td><input type="button" value="6" class="btn" onclick="mycall(this)"/></td>
+		</tr>
+		<tr>
+			<td><input type="button" value="7" class="btn" onclick="mycall(this)"/></td>
+			<td><input type="button" value="8" class="btn" onclick="mycall(this)"/></td>
+			<td><input type="button" value="9" class="btn" onclick="mycall(this)"/></td>
+		</tr>
+		<tr>
+			<td><input type="button" value="0" class="btn" onclick="mycall(this)"/></td>
+			<td colspan="2">
+				<input onclick="myclick()" type="button" value="☏" id="btn_coll">
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

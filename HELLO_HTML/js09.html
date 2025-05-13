@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	
+	function myclick(){
+		var obj_first=document.getElementById("it_first");
+		var obj_last=document.getElementById("it_last");
+		var btn = document.getElementById("mydiv");
+		var first=obj_first.value;
+		var last=obj_last.value;
+		var fisrtIn=parseInt(first);
+		var lastIn=parseInt(last);
+		
+		console.log(fisrtIn);
+		console.log(lastIn);
+		var txt ="";
+		
+		for(var i=fisrtIn;i<=lastIn;i++){
+			for(var j=0;j<i;j++){
+				
+				txt += "*";
+			}
+			txt += "<br>";
+		}
+		console.log(txt);
+		
+		btn.innerHTML=txt;
+	}
+</script>
+<style type="text/css">
+#it_first, #it_last{
+	width : 50px;
+}
+#mydiv{
+	height: 150px;
+}
+</style>
+</head>
+<body>
+	<table border="1px">
+		<tr>
+			<td>첫별수</td>
+			<td>
+				<input type="text" id="it_first" />
+			</td>
+		</tr>
+		<tr>
+			<td>끝별수</td>
+			<td>
+				<input type="text" id="it_last" />
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<button onclick="myclick()">별출력하사</button>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div id="mydiv"></div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

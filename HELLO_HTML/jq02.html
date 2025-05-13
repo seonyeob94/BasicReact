@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<style>
+#it{
+	width: 30px;
+}
+</style>
+<script type="text/javascript">
+function handle(){
+	
+	
+	var a= $("#it").val();
+	var aa = parseInt(a)+1;
+	
+	$("#it").val(aa);
+	
+}
+$(document).ready(function(){
+	$("#btn").on("click", function(event) {  
+		handle();
+	});
+});
+</script>
+</head>
+<body>
+	<input type="text" id="it" value="100"/>
+	<button id="btn">INCREASE</button>
+</body>
+</html>
