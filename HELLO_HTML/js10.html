@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#it{
+	width: 40px;
+}
+#mydiv{
+	height : 170;
+}
+</style>
+<script type="text/javascript">
+	
+	function myclick(){
+		var obj_num = document.getElementById("it").value;
+		
+		var obj_obn =document.getElementById("mydiv")
+		var str="";
+		if(obj_num.length !== 3) {
+            document.querySelector('#mydiv').innerHTML = "3자리 숫자를 입력해주세요."+"<br>";
+            return;
+        }
+		const arr1=[];
+		for(var i=0;i<3;i++){
+			arr1.push(parseInt(obj_num.charAt(i)));
+		}
+		
+		cnt =0;
+		totalMatch =0;
+		
+		for(var i=0;i<3;i++){
+			if(arr1[i]==arr[i]){
+				cnt++;
+			}
+			if (arr1.indexOf(arr[i]) !== -1) {
+			    totalMatch++;
+			  }
+		}
+		
+		totalMatch=totalMatch-cnt;
+		str = obj_num+" : "+cnt+"스크라이크"+totalMatch+"볼"+"<br>";
+		if(cnt>2){
+			alert("정답")
+		}
+		
+		
+		obj_obn.innerHTML+=str;
+			
+	}
+	
+	function myinit(){
+		 arr=[];
+		while(arr.length<3){
+			
+			const rand = parseInt(Math.random()*10);
+			if(!arr.includes(rand)) arr.push(rand);
+			
+		}
+		
+		console.log(arr);
+	}
+</script>
+</head>
+<body onload="myinit()">
+	<table border="1">
+		<tr>
+			<td>맞출수</td>
+			<td>
+				<input type="text" id="it">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input onclick="myclick()" type="button" value="맞춰보기">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div id="mydiv"></div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

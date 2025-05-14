@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<style type="text/css">
+#it_mine,#it_com,#it_result{
+	width : 30px;
+}
+</style>
+<script type="text/javascript">
+
+	
+	function myclick(){
+		
+		var obj_mine =$("#it_mine");
+		var obj_com =$("#it_com");
+		var obj_res =$("#it_result");
+		
+		var mine = obj_mine.val();
+		var com = "";
+		var res = "";
+		
+		var rnd = Math.random();
+		if(rnd>0.5){
+			com="홀";
+		}
+		else{
+			com="짝";
+		}
+		
+		if(mine==com){
+			res="이김";
+		}
+		else{
+			res="짐";
+		}
+		obj_com.val(com);
+		obj_res.val(res);
+		
+	}
+	$(document).ready(function(){
+		$("#btn").on("click", function(event) {  
+			myclick();
+		});
+	});
+</script>
+</head>
+<body>
+	<table border="1">
+		<tr>
+			<td>나</td>
+			<td>
+				<input type="text" id="it_mine">
+			</td>
+		</tr>
+		<tr>
+			<td>컴</td>
+			<td>
+				<input type="text" id="it_com">
+			</td>
+		</tr>
+		<tr>
+			<td>결과</td>
+			<td>
+				<input type="text" id="it_result">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input id="btn" type="button" value="게임하기">	
+			</td>
+			
+		</tr>
+	</table>
+</body>
+</html>

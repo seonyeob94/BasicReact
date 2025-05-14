@@ -5,25 +5,36 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	
+	function star(num){
+		
+		var ret ="";
+		for(var i=0;i<num;i++){
+			ret+="★"
+		}
+		ret+="<br/>"
+		
+		return ret;
+	}
+	
 	function myclick(){
 		var obj_first=document.getElementById("it_first");
 		var obj_last=document.getElementById("it_last");
 		var btn = document.getElementById("mydiv");
+		
 		var first=obj_first.value;
 		var last=obj_last.value;
-		var fisrtIn=parseInt(first);
+		
+		var firstIn=parseInt(first);
 		var lastIn=parseInt(last);
 		
-		console.log(fisrtIn);
+		console.log(firstIn);
 		console.log(lastIn);
+	
 		var txt ="";
 		
-		for(var i=fisrtIn;i<=lastIn;i++){
-			for(var j=0;j<i;j++){
+		for(var i=firstIn;i<=lastIn;i++){
+			txt += star(i);
 				
-				txt += "*";
-			}
-			txt += "<br>";
 		}
 		console.log(txt);
 		
@@ -55,7 +66,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<button onclick="myclick()">별출력하사</button>
+				<button onclick="myclick()">별출력하시오</button>
 			</td>
 		</tr>
 		<tr>

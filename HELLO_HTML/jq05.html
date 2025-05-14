@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<style type="text/css">
+.its{
+	width : 30px;
+}
+</style>
+<script type="text/javascript">
+
+	
+	function handle(){
+		
+		var it= $(".its")
+		console.log(it)
+		var a=it.eq(0).val();
+		var b=it.eq(1).val();
+		
+		var aa=parseInt(a);
+		var bb=parseInt(b);
+		console.log(a,aa,b,bb);
+		var mul = aa*bb;
+		
+		it.eq(2).val(mul);
+		
+	}
+	$(document).ready(function(){
+		$("#btn").on("click", function(event) {  
+			handle();
+		});
+	});
+</script>
+</head>
+<body>
+	<input type="text" class="its" id="it1"/>
+	*
+	<input type="text" class="its" id="it2" />
+	<button id="btn">=</button>
+	<input type="text" class="its" id="it3" />
+</body>
+</html>

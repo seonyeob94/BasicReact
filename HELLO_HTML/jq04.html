@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<style>
+#it{
+	width: 30px;
+}
+</style>
+<script type="text/javascript">
+
+
+function myclick(){
+	var objss = $(".myspan")
+	console.log(objss);
+	
+	const arr=[];
+	while(arr.length<6){
+		
+		const rand = parseInt(Math.random()*45+1);
+		if(!arr.includes(rand)) arr.push(rand);
+		
+	}
+	
+	arr.sort( function(a, b){
+		
+	 	return a-b; 
+	});
+	 
+	  
+	objss.each(function(idx){
+	    $(this).text(arr[idx]);
+	  });
+	
+	
+}
+
+$(document).ready(function(){
+	$("#btn").on("click", function(event) {  
+		myclick();
+	});
+});
+</script>
+</head>
+<body>
+<table border="1px">
+	<tr>
+		<td><span class="myspan">...</span></td>
+		<td><span class="myspan">...</span></td>
+		<td><span class="myspan">...</span></td>
+		<td><span class="myspan">...</span></td>
+		<td><span class="myspan">...</span></td>
+		<td><span class="myspan">...</span></td>
+	</tr>
+	<tr>
+		<td colspan="6">
+			<button id="btn">로또 생성하기</button>
+		</td>
+	</tr>
+</table>
+</body>
+</html>
