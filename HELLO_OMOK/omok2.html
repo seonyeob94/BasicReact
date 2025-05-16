@@ -19,14 +19,26 @@ img {
 }
 </style>
 <script type="text/javascript">
-	var arr2d = [ [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-			[ 0, 1, 1, 1, 0, 0, 0, 0, 0, 0 ], [ 0, 1, 0, 1, 0, 0, 0, 0, 0, 0 ],
-			[ 0, 1, 1, 1, 0, 0, 0, 0, 0, 0 ], [ 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
+	/* var arr2d = [ 
+			[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+			[ 0, 2, 2, 2, 0, 0, 0, 0, 0, 0 ], 
+			[ 0, 2, 0, 2, 0, 0, 0, 0, 0, 0 ],
+			[ 0, 2, 2, 2, 0, 0, 0, 0, 0, 0 ], 
+			[ 0, 0, 2, 0, 0, 0, 0, 0, 0, 0 ],
 
-			[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-			[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-			[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ];
+			[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], 
+			[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+			[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], 
+			[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+			[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] 
+			]; */
+		var arr2d = new [10][10];
+			for (var i = 0; i < 10; i++) {
+				for (var j = 0; j < 10; j++) {
+					arr2d[i][j]=0;
+				}
 
+			}
 	function render() {
 		var imgs = document.getElementsByTagName("img");
 
@@ -194,10 +206,11 @@ img {
 		
 		
 	}
-	
+	var gameover = false;
 
 	function myclick(obj) {
-
+		
+		if(gameover) return;
 		var str_ij = obj.target.alt;
 		var arr_ij = str_ij.split(",")
 		var i = parseInt(arr_ij[0]);
@@ -225,21 +238,28 @@ img {
 		var ur = getUr(i, j, stone);
 		var dr = getDr(i, j, stone);
 		var dl = getDl(i, j, stone);
-
+		console.log("up",up,"dw",dw,"ri",ri,"le",le,"ul",ul,"ur",ur,"dr",dr,"dl",dl);
+		var d1 =up + dw + 1;
+		var d2 =ri + le + 1;
+		var d3 =ul + dr + 1;
+		var d4 =dl + ur + 1;
 		
-		const rs = Math.max(up + dw + 1, ri + le + 1, ul + dr + 1, dl + ur + 1);
+		var rs = Math.max(d1, d2, d3, d4);
+		console.log("rs",rs);
 	
+		render();
 		
 		if(rs==5){
+			gameover = true;
 			const winner = (stone == 1) ? '흑' : '백';
 			 setTimeout(() => {
 				alert(`${winner} 승리`);
-			 },100)
+			 },500)
+			 return;
 		}
 		
 	
 		flag_bw = !flag_bw;
-		render();
 	}
 	
 	
@@ -254,10 +274,24 @@ img {
 		}
 		render();
 	}
+	
+	function fn_reset(){
+		for (var i = 0; i < 10; i++) {
+			for (var j = 0; j < 10; j++) {
+				arr2d[i][j]=0;
+			}
+
+		}
+			flag_bw=true;
+			gameover = false;
+			fn_init();
+		
+	}
 </script>
 </head>
 <body onload="fn_init()">
-	<a href="javascript:render()">render</a>
+	<a href="javascript:fn_reset()">reset</a>
+
 	<table>
 		<tr>
 			<td><img src="0.png" onclick="myclick(event)"></td>
