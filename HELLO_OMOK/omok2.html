@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+body, table, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+img {
+	display: block;
+}
+</style>
+<script type="text/javascript">
+	var arr2d = [ [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+			[ 0, 1, 1, 1, 0, 0, 0, 0, 0, 0 ], [ 0, 1, 0, 1, 0, 0, 0, 0, 0, 0 ],
+			[ 0, 1, 1, 1, 0, 0, 0, 0, 0, 0 ], [ 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
+
+			[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+			[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+			[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ];
+
+	function render() {
+		var imgs = document.getElementsByTagName("img");
+
+		for (var i = 0; i < 10; i++) {
+			for (var j = 0; j < 10; j++) {
+				imgs[i * 10 + j].src = arr2d[i][j] + ".png";
+			}
+
+		}
+
+	}
+	
+	
+	function getUp(i, j, stone) {
+		var ret = 0;
+		
+		try {
+			while (true) {
+				i--;
+				if (arr2d[i][j] == stone) {
+					ret++;
+				} else {
+					return ret;
+				}
+			}
+			} catch (error) {
+			  return ret;
+			} 
+		
+		
+	}
+	function getDw(i, j, stone) {
+		var ret = 0;
+		
+		try {
+			while (true) {
+				i++;
+				if (arr2d[i][j] == stone) {
+					ret++;
+				} else {
+					return ret;
+				}
+			}
+			} catch (error) {
+			  return ret;
+			} 
+		
+		
+	}
+	
+	
+	function getRi(i, j, stone) {
+		var ret = 0;
+		
+		try {
+			while (true) {
+				j++;
+				if (arr2d[i][j] == stone) {
+					ret++;
+				} else {
+					return ret;
+				}
+			}
+			} catch (error) {
+			  return ret;
+			} 
+		
+		
+	}
+	function getLe(i, j, stone) {
+		var ret = 0;
+		
+		try {
+			while (true) {
+				j--;
+				if (arr2d[i][j] == stone) {
+					ret++;
+				} else {
+					return ret;
+				}
+			}
+			} catch (error) {
+			  return ret;
+			} 
+		
+		
+	}
+	
+	
+	function getUr(i, j, stone) {
+		var ret = 0;
+		
+		try {
+			while (true) {
+				i--;
+				j++;
+				if (arr2d[i][j] == stone) {
+					ret++;
+				} else {
+					return ret;
+				}
+			}
+			} catch (error) {
+			  return ret;
+			} 
+		
+		
+	}
+	function getDl(i, j, stone) {
+		var ret = 0;
+		
+		try {
+			while (true) {
+				i++;
+				j--;
+				if (arr2d[i][j] == stone) {
+					ret++;
+				} else {
+					return ret;
+				}
+			}
+			} catch (error) {
+			  return ret;
+			} 
+		
+		
+	}
+	
+	
+	function getDr(i, j, stone) {
+		var ret = 0;
+		
+		try {
+			while (true) {
+				i++;
+				j++;
+				if (arr2d[i][j] == stone) {
+					ret++;
+				} else {
+					return ret;
+				}
+			}
+			} catch (error) {
+			  return ret;
+			} 
+		
+		
+	}
+	function getUl(i, j, stone) {
+		var ret = 0;
+		
+		try {
+			while (true) {
+				i--;
+				j--;
+				if (arr2d[i][j] == stone) {
+					ret++;
+				} else {
+					return ret;
+				}
+			}
+			} catch (error) {
+			  return ret;
+			} 
+		
+		
+	}
+	
+
+	function myclick(obj) {
+
+		var str_ij = obj.target.alt;
+		var arr_ij = str_ij.split(",")
+		var i = parseInt(arr_ij[0]);
+		var j = parseInt(arr_ij[1]);
+
+		//이미 둔곳에 착수 금지
+		if (arr2d[i][j] !== 0) {
+			return;
+		}
+		var stone = -1;
+		//번갈아 가며 흰돌 검은돌
+		if (flag_bw) {
+			arr2d[i][j] = 1
+			stone = 1;
+		} else {
+			arr2d[i][j] = 2
+			stone = 2;
+		}
+
+		var up = getUp(i, j, stone);
+		var dw = getDw(i, j, stone);
+		var ri = getRi(i, j, stone);
+		var le = getLe(i, j, stone);
+		var ul = getUl(i, j, stone);
+		var ur = getUr(i, j, stone);
+		var dr = getDr(i, j, stone);
+		var dl = getDl(i, j, stone);
+
+		
+		const rs = Math.max(up + dw + 1, ri + le + 1, ul + dr + 1, dl + ur + 1);
+	
+		
+		if(rs==5){
+			const winner = (stone == 1) ? '흑' : '백';
+			 setTimeout(() => {
+				alert(`${winner} 승리`);
+			 },100)
+		}
+		
+	
+		flag_bw = !flag_bw;
+		render();
+	}
+	
+	
+	function fn_init() {
+		var imgs = document.getElementsByTagName("img");
+		flag_bw = true;
+		for (var i = 0; i < 10; i++) {
+			for (var j = 0; j < 10; j++) {
+				imgs[i * 10 + j].alt = i + "," + j;
+			}
+
+		}
+		render();
+	}
+</script>
+</head>
+<body onload="fn_init()">
+	<a href="javascript:render()">render</a>
+	<table>
+		<tr>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+		</tr>
+		<tr>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+		</tr>
+		<tr>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+		</tr>
+		<tr>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+		</tr>
+		<tr>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+		</tr>
+		<tr>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+		</tr>
+		<tr>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+		</tr>
+		<tr>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+		</tr>
+		<tr>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+		</tr>
+		<tr>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+			<td><img src="0.png" onclick="myclick(event)"></td>
+		</tr>
+
+
+
+	</table>
+</body>
+</html>

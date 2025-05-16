@@ -18,35 +18,44 @@
 		
 		var obj_obn =document.getElementById("mydiv")
 		var str="";
+		
+		//세자리 숫자 혹은 문자 경고
 		if(obj_num.length !== 3) {
             document.querySelector('#mydiv').innerHTML = "3자리 숫자를 입력해주세요."+"<br>";
             return;
         }
+		//내가 입력한 숫자를 배열로 생성
+		//includes로 볼을 찾기 위해 문자열을 parseInt적용
 		const arr1=[];
 		for(var i=0;i<3;i++){
 			arr1.push(parseInt(obj_num.charAt(i)));
 		}
 		
-		cnt =0;
-		totalMatch =0;
+		var cnt =0;
+		var totalMatch =0;
 		
 		for(var i=0;i<3;i++){
 			if(arr1[i]==arr[i]){
 				cnt++;
 			}
-			if (arr1.indexOf(arr[i]) !== -1) {
+			if (arr1.includes(arr[i])) {
 			    totalMatch++;
 			  }
 		}
 		
 		totalMatch=totalMatch-cnt;
 		str = obj_num+" : "+cnt+"스크라이크"+totalMatch+"볼"+"<br>";
-		if(cnt>2){
-			alert("정답")
-		}
 		
 		
 		obj_obn.innerHTML+=str;
+		
+		if(cnt>2){
+			 setTimeout(() => {
+				    alert('🎉 정답입니다!');
+				  }, 50);
+		}
+		
+		
 			
 	}
 	
