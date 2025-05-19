@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style type="text/css">
+#it{
+	width: 40px;
+}
+#mydiv{
+	height : 170;
+	 overflow-y: auto;
+}
+</style>
+<script type="text/javascript">
+	
+	function myclick(){
+		var obj_num = $("#it").val().trim();
+		
+		var obj_obn =$("#mydiv")
+		var str="";
+		
+		//세자리 숫자 혹은 문자 경고
+		if(obj_num.length !== 3) {
+            $('#mydiv').html("3자리 숫자를 입력해주세요."+"<br>");
+            return;
+        }
+		//내가 입력한 숫자를 배열로 생성
+		//includes로 볼을 찾기 위해 문자열을 parseInt적용
+		const arr1=[];
+		for(var i=0;i<3;i++){
+			arr1.push(parseInt(obj_num.charAt(i)));
+		}
+		
+		var cnt =0;
+		var totalMatch =0;
+		
+		for(var i=0;i<3;i++){
+			if(arr1[i]==arr[i]){
+				cnt++;
+			}
+			if (arr1.includes(arr[i])) {
+			    totalMatch++;
+			  }
+		}
+		
+		totalMatch=totalMatch-cnt;
+		str = obj_num+" : "+cnt+"스크라이크"+totalMatch+"볼"+"<br>";
+		
+		
+		obj_obn.append(str);
+		
+		if(cnt>2){
+			 setTimeout(() => {
+				    alert('🎉 정답입니다!');
+				  }, 50);
+		}
+		
+		
+			
+	}
+	let arr =[];
+	function myinit(){
+		 arr=[];
+		while(arr.length<3){
+			
+			const rand = Math.floor(Math.random()*10);
+			if(!arr.includes(rand)) arr.push(rand);
+			
+		}
+		
+		console.log(arr);
+	}
+	$(document).ready(function(){
+		$("#btn").on("click", function(event) {  
+			myclick();
+		});
+	});
+</script>
+</head>
+<body onload="myinit()">
+	<table border="1">
+		<tr>
+			<td>맞출수</td>
+			<td>
+				<input type="text" id="it">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input id="btn" type="button" value="맞춰보기">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div id="mydiv"></div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

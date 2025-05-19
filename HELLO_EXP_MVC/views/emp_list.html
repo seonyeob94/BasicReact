@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>EMP LIST 화면</title>
+</head>
+<body>
+  <h1>EMP LIST</h1>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>사원ID</th>
+        <th>이름</th>
+        <th>성별</th>
+        <th>주소</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% emps.forEach(emp => { %>
+      <tr>
+        <td><%= emp.e_id %></td>
+        <td><%= emp.e_name %></td>
+        <td><%= emp.gen %></td>
+        <td><%= emp.addr %></td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>

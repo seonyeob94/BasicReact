@@ -14,7 +14,9 @@ conn.connect();
 var sql =`
 	
 UPDATE emp
-SET e_name=?,gen=?,addr=?
+SET e_name=?,
+    gen=?,
+    addr=?
 WHERE e_id=?
 `;
 

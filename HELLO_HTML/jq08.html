@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style type="text/css">
+#it{
+	width: 100px;
+}
+.btn{
+	width : 32px;
+}
+#btn_call{
+	width : 60px;
+}
+</style>
+<script type="text/javascript">
+
+
+
+
+
+$(document).ready(function(){
+	$('.btn').on('click', function(){
+		console.log($(this).val());
+		var obj_it = $("#it");
+		var str_old = obj_it.val();
+		var str_new = $(this).val();
+		
+		obj_it.val(str_old + str_new); 
+		
+		//console.log(str_new);
+		
+		
+		//console.log(btn.value);
+
+		
+	})
+	$("#btn").on("click", function(event) {  
+		myclick();
+	});
+});
+
+function myclick(){
+	var obj_it = $("#it");
+	var str_tel = obj_it.val();
+	
+	alert("calling\n"+str_tel);
+}
+	
+</script>
+</head>
+<body>
+	<table border="1px">
+		<tr>
+			<td colspan="3">
+				<input type="text" id="it"/>
+			</td>
+		</tr>
+		<tr>
+			<td><input type="button" value="1" class="btn" /></td>
+			<td><input type="button" value="2" class="btn" /></td>
+			<td><input type="button" value="3" class="btn" /></td>
+		</tr>
+		<tr>
+			<td><input type="button" value="4" class="btn" /></td>
+			<td><input type="button" value="5" class="btn" /></td>
+			<td><input type="button" value="6" class="btn" /></td>
+		</tr>
+		<tr>
+			<td><input type="button" value="7" class="btn" /></td>
+			<td><input type="button" value="8" class="btn" /></td>
+			<td><input type="button" value="9" class="btn" /></td>
+		</tr>
+		<tr>
+			<td><input type="button" value="0" class="btn" /></td>
+			<td colspan="2">
+				<input id="btn" type="button" value="☏">
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
