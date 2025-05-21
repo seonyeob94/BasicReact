@@ -1,30 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>EMP LIST 화면</title>
+<meta charset="UTF-8">
+<title>EMP LIST 화면</title>
+<script type="text/javascript">
+function fn_add(){
+	location.href = "emp_add.do"
+}
+</script>
 </head>
 <body>
-  <h1>EMP LIST</h1>
-  <table border="1">
-    <thead>
-      <tr>
-        <th>사원ID</th>
-        <th>이름</th>
-        <th>성별</th>
-        <th>주소</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% emps.forEach(emp => { %>
-      <tr>
-        <td><%= emp.e_id %></td>
-        <td><%= emp.e_name %></td>
-        <td><%= emp.gen %></td>
-        <td><%= emp.addr %></td>
-      </tr>
-      <% }) %>
-    </tbody>
-  </table>
+	<h1>EMP LIST</h1>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>사원ID</th>
+				<th>이름</th>
+				<th>성별</th>
+				<th>주소</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% mylist.forEach(emp => { %>
+			<tr>
+				<td><a href="/emp_detail.do?e_id=<%= emp.e_id %>"><%= emp.e_id %></a></td>
+				<td><%= emp.e_name %></td>
+				<td><%= emp.gen %></td>
+				<td><%= emp.addr %></td>
+			</tr>
+			<% }) %>
+		</tbody>
+	</table>
+	<button onclick="fn_add()">추가</button>
 </body>
 </html>

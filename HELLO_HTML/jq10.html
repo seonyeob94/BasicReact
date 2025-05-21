@@ -16,6 +16,7 @@
 <script type="text/javascript">
 	
 	function myclick(){
+		
 		var obj_num = $("#it").val().trim();
 		
 		var obj_obn =$("#mydiv")
@@ -47,13 +48,13 @@
 		
 		totalMatch=totalMatch-cnt;
 		str = obj_num+" : "+cnt+"스크라이크"+totalMatch+"볼"+"<br>";
-		
+		tnt++;
 		
 		obj_obn.append(str);
 		
 		if(cnt>2){
 			 setTimeout(() => {
-				    alert('🎉 정답입니다!');
+				    alert(tnt+'번 시도로 정답입니다!');
 				  }, 50);
 		}
 		
@@ -63,6 +64,7 @@
 	let arr =[];
 	function myinit(){
 		 arr=[];
+		 tnt=0;
 		while(arr.length<3){
 			
 			const rand = Math.floor(Math.random()*10);
@@ -73,13 +75,14 @@
 		console.log(arr);
 	}
 	$(document).ready(function(){
+		myinit();
 		$("#btn").on("click", function(event) {  
 			myclick();
 		});
 	});
 </script>
 </head>
-<body onload="myinit()">
+<body>
 	<table border="1">
 		<tr>
 			<td>맞출수</td>

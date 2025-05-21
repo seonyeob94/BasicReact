@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+function fn_mod(){
+	document.frm.submit();
+}
+function fn_canc(){
+	 history.go(-2);
+	 
+	 return false; 
+}
+</script>
+</head>
+<body>
+	<h2>EMP DETAIL 화면</h2>
+	{{#nod}}
+		<form action="/emp_nod_act.do" name="frm" method="post">
+		    <table border="1">
+		      <tr>
+		        <td>사원ID</td>
+		        <td>
+		        	<input type="text" name="e_id" value="{{e_id}}" />
+		        </td>
+		      </tr>
+		      <tr>
+		        <td>이름</td>
+		        <td>
+		          <input type="text" name="e_name" value="{{e_name}}" />
+		        </td>
+		      </tr>
+		      <tr>
+		        <td>성별</td>
+		        <td>
+		          <input type="text" name="gen" value="{{gen}}" />
+		        </td>
+		      </tr>
+		      <tr>
+		        <td>주소</td>
+		        <td>
+		          <input type="text" name="addr" value="{{addr}}" />
+		        </td>
+		      </tr>
+		      <tr>
+		        <td colspan="2" style="text-align:center">
+		          <button onclick="fn_mod()">저장</button>
+		          <button type="button" onclick="fn_canc()">취소</button>
+		        </td>
+		      </tr>
+		    </table>
+		</form>
+	{{/nod}}
+</body>
+</html>

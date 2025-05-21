@@ -1,0 +1,24 @@
+<!-- views/emp_edit.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>EMP EDIT</title>
+  <script type="text/javascript">
+  {{#act}}
+	let cnt ="{{act}}";
+  {{/act}}
+	if(cnt=="1"){
+		alert("정상적으로 입력되었습니다")
+		location.href="emp_list.do";
+	}
+	else{
+		alert("입력 도중 문제가 생겼습니다")
+	 	history.back();
+	}
+</script>
+</head>
+<body>
+  
+</body>
+</html>

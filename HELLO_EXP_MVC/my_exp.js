@@ -1,22 +1,16 @@
-const express    = require('express');
+const mysql = require('sync-mysql');
+const express = require('express');
 const bodyParser = require('body-parser');
-const path       = require('path');
-const app        = express();
-const port       = 3000;
+const path = require('path');
+const DaoEmp = require('./daoemp');
 
-const mysql = require('mysql2/promise');
 
-// (app.js 최상단에 추가)
-const pool = mysql.createPool({
-  host: 'localhost',
-  port: 3305,       // MariaDB 포트
-  user: 'root',     // DB 유저
-  password: 'react',// 비밀번호
-  database: 'react',// 사용 DB
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0
-});
+const de = new DaoEmp();
+const app = express();
+const port = 3000;
+
+
+
 
 // ① .html 을 EJS 엔진으로 렌더링하도록 등록
 app.engine('html', require('ejs').renderFile);
@@ -29,23 +23,79 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-  res.send('Hello ChaEunWoo');
+	res.send('Hello ChaEunWoo');
 });
 
 
 
-app.get('/emp_list.do', async (req, res, next) => {
-  try {
-    // emp 테이블 전체 조회
-    const [rows] = await pool.query('SELECT * FROM emp');
-    // 조회된 배열을 emps 키로 뷰에 넘겨 줌
-    res.render('emp_list', { emps: rows });
-  } catch (err) {
-    next(err);
-  }
+app.get('/emp_list.do', (req, res) => {
+
+
+
+	let mylist = de.selectList();
+	res.render('emp_list.html', { mylist: mylist });
+
+
+});
+
+app.get('/emp_detail.do', (req, res) => {
+
+
+	const e_id = req.query.e_id;
+	console.log(e_id);
+	let vo = de.selectOne(e_id);
+	console.log(vo);
+	res.render('emp_detail.html', { vo: vo });
+
+
+});
+app.get('/emp_nod.do', (req, res) => {
+	const e_id = req.query.e_id;
+	let vo = de.selectOne(e_id);
+	res.render('emp_nod.html', { vo: vo });
 });
 
 
+
+// → bodyParser.urlencoded()가 이미 등록되어 있으므로 req.body 사용
+app.post('/emp_nod_act.do', (req, res) => {
+	// req.body 에서 vo 만들기
+	const vo = {
+		'e_id': req.body.e_id,
+		'e_name': req.body.e_name,
+		'gen': req.body.gen,
+		'addr': req.body.addr
+	};
+	let cnt=de.update(vo);
+	res.render('emp_nod_act.html', { cnt: cnt });
+	
+});
+
+app.get('/emp_add.do', (req, res) => {
+	 const nextId = de.getNextId();
+	res.render('emp_add.html', { nextId: nextId });
+});
+
+
+app.post('/emp_add_act.do', (req, res) => {
+	// req.body 에서 vo 만들기
+	const vo = {
+		'e_id': req.body.e_id,
+		'e_name': req.body.e_name,
+		'gen': req.body.gen,
+		'addr': req.body.addr
+	};
+	let cnt=de.insert(vo);
+	res.render('emp_add_act.html', { cnt: cnt });
+	
+});
+
+app.get('/emp_del_act.do', (req, res) => {
+	const e_id = req.query.e_id;
+	let cnt = de.delete(e_id);
+	res.render('emp_del_act.html', { cnt: cnt });
+	
+});
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+	console.log(`Example app listening on port ${port}`);
 });

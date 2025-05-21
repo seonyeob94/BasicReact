@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+</head>
+<body>
+  <h1>환영합니다, {{a}}님!</h1>
+   <h2>친구 목록</h2>
+  <ul>
+    {{#b}}
+      <li>{{.}}</li>
+    {{/b}}
+  </ul>
+  
+  <h2>가게 목록</h2>
+  <table border="1">
+    <tr><th>menu</th><th>price</th></tr>
+    {{#c}}
+	    <tr>
+	      <td>{{menu}}</td>
+	      <td>{{price}}</td>
+	    </tr>
+    {{/c}}
+  </table>
+</body>
+</html>

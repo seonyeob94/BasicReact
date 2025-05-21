@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function fn_mod(){
+	location.href = "emp_nod.do?e_id=<%= vo.e_id %>"
+}
+function fn_del(){
+	location.href = "emp_del_act.do?e_id=<%= vo.e_id %>"
+	
+}
+</script>
+</head>
+<body>
+	<h2>EMP DETAIL 화면</h2>
+	<table border="1">
+
+		<tr>
+			<td>사원ID</td>
+			<td><%= vo.e_id %></td>
+		</tr>
+		<tr>
+			<td>이름</td>
+			<td><%= vo.e_name %></td>
+		</tr>
+		<tr>
+			<td>성별</td>
+			<td><%= vo.gen %></td>
+
+		</tr>
+		<tr>
+			<td>주소</td>
+			<td><%= vo.addr %></td>
+
+		</tr>
+		<tr>
+			<td colspan="2">
+				<button onclick="fn_mod()">수정</button>
+				<button onclick="fn_del()">삭제</button>
+			</td>
+		</tr>
+		</tbody>
+</body>
+</html>

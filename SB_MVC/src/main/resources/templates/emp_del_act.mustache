@@ -1,0 +1,24 @@
+<!-- views/emp_edit.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>EMP del</title>
+  <script type="text/javascript">
+  {{#del}}
+	let cnt ="{{del}}";
+  {{/del}}
+  if(cnt=="1"){
+	alert("정상적으로 삭제되었습니다")
+	location.href="emp_list.do";
+  }
+  else{
+  	alert("삭제 도중 문제가 생겼습니다")
+	history.back();
+  }
+</script>
+</head>
+<body>
+  
+</body>
+</html>
