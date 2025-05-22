@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>AJAX Fetch 예제</title>
+  <script>
+    function fn_ajax() {
+    	let a =0;
+    	let b =0;
+    	let c =0;
+      fetch('/one.ajax', {
+        method: 'GET',                     // GET은 대문자로 해 주세요
+	    async: false
+        
+       
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();  // JSON 파싱
+      })
+      .then(data => {
+        // 메시지를 표시할 <div>를 미리 만들어 두고, 그걸 가져다 씁니다.
+    	  a= data.cnt
+    	  console.log('a성공:', a);
+      })
+      
+    c= a;
+    }
+  </script>
+</head>
+<body>
+  <h1>AJAX Fetch</h1>
+  <button onclick="fn_ajax()">Fetch 호출</button>
+  <!-- 여기에 서버 메시지를 찍어 줄 예정 -->
+  <div id="messageDisplay" style="margin-top:1em; color: blue;"></div>
+</body>
+</html>

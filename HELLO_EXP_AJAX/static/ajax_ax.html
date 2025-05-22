@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="text/javascript">
+function fn_ajax(){
+	axios.post('/axios.ajax',{
+		params:{
+			menu:'짬뽕'
+		}
+	})
+	.then(function (resp) {
+	    // 성공했을 때
+	    console.log(resp);
+	  })
+	  
+	
+	
+}
+</script>
+</head>
+<body>
+	AJAX AXIOS<br/>
+	<a href="javascript:fn_ajax()">ajax호출</a>
+</body>
+</html>

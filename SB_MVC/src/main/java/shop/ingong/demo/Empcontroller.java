@@ -64,16 +64,17 @@ public class Empcontroller {
 		 model.addAttribute("cnt", cnt); 
 	     return "emp_nod_act";
 	 }
+	 
 	 @GetMapping("/emp_add.do")
 	 public String do_emp_act(Model model) {
 		 	
-		 DaoEmp de = new DaoEmp();
-		    // EmpVO 에는 AllArgsConstructor 만 있으니, id만 채워서
+		DaoEmp de = new DaoEmp();
+		// EmpVO 에는 AllArgsConstructor 만 있으니, id만 채워서
 		
-		    int nextId = de.getNextId();     // ② 한 건만 조회
-		    model.addAttribute("add", nextId); 
+		int nextId = de.getNextId();     // ② 한 건만 조회
+		model.addAttribute("add", nextId); 
 		    
-		 return "emp_add";
+		return "emp_add";
 	 }
 	 @PostMapping("/emp_add_act.do")
 	 public String do_emp_add_act(@RequestParam("e_id") String eId,
@@ -84,8 +85,8 @@ public class Empcontroller {
 		 DaoEmp de = new DaoEmp();
 		 EmpVO vo= new EmpVO(eId, eName, gen, addr);
 		 int act = de.insert(vo);
-		 
 		 model.addAttribute("act", act); 
+		 
 	     return "emp_add_act";
 	 }
 	 @GetMapping("/emp_del_act.do")

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script type="text/javascript">
+function fn_list(){
+	axios.get('/emp_list.ajax')
+	.then(function (resp) {
+	    // 성공했을 때
+	    console.log(resp);
+	    const list = resp.data.mylist;    // 서버에서 보낸 배열
+		
+	    const tbody = document.getElementById('my_tbody'); //배열을 넣을 테이블
+        tbody.innerHTML = '';  
+        
+        list.forEach(emp => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td>${emp.e_id}</td>
+              <td>${emp.e_name}</td>
+              <td>${emp.gen}</td>
+              <td>${emp.addr}</td>
+            `;
+            tbody.appendChild(tr);
+        })    
+	  })
+}
+</script>
+</head>
+<body>
+EMP 화면
+<button onclick="fn_list()">데이터 가져오기</button>
+<table border="1">
+	<thead>
+		<tr>
+			<td>사번</td>
+			<td>이름</td>
+			<td>성별</td>
+			<td>주소</td>
+		</tr>
+	</thead>
+	<tbody id="my_tbody">
+		<tr>
+			<td colspan="4">
+				데이터가 없어유
+			</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>

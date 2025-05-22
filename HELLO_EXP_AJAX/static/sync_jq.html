@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+function fn_ajax(){
+	let a =0;
+	let b =0;
+	let c =0;
+	
+	$.ajax({
+	    url: '/one.ajax', // 필수: 데이터를 요청할 서버의 주소
+	    async: false,
+	    method: 'GET', 
+	    dataType: 'json', // 서버로부터 예상하는 응답 데이터 타입 ('json', 'xml', 'html', 'text', 'script')
+	    success: function(resp) { // 요청 성공 시 실행될 콜백 함수
+	    	a= resp.cnt
+	    	
+	        console.log('a성공:', a);
+	        // 응답 데이터를 사용하여 UI 업데이트 등
+	    }
+	    
+	});
+	$.ajax({
+	    url: '/two.ajax', // 필수: 데이터를 요청할 서버의 주소
+	    async: false,
+	    method: 'GET', 
+	    dataType: 'json', // 서버로부터 예상하는 응답 데이터 타입 ('json', 'xml', 'html', 'text', 'script')
+	    success: function(resp) { // 요청 성공 시 실행될 콜백 함수
+	    	b= resp.cnt
+	    	
+	        console.log('b성공:', b);
+	        // 응답 데이터를 사용하여 UI 업데이트 등
+	    }
+	    
+	});
+	
+	c= a+b;
+	console.log('c성공:',c);
+}
+</script>
+</head>
+<body>
+	AJAX JQUERY<br/>
+	<a href="javascript:fn_ajax()">ajax호출</a>
+</body>
+</html>

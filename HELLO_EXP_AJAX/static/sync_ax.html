@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="text/javascript">
+async function fn_ajax(){
+	let a =0;
+	let b =0;
+	let c =0;
+	
+	let r1 = await axios.get('/one.ajax');
+	console.log(r1.data.cnt);
+	a= r1.data.cnt;
+    console.log('a성공:', a);
+	
+	let r2 = await axios.get('/one.ajax');
+	console.log(r2.data.cnt);
+	b= r2.data.cnt;
+    console.log('b성공:', b);
+	c= a+b;
+    console.log('c성공:', c);
+	
+}
+</script>
+</head>
+<body>
+	AJAX AXIOS<br/>
+	<a href="javascript:fn_ajax()">ajax호출</a>
+</body>
+</html>

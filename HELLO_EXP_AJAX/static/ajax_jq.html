@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+function fn_ajax(){
+	$.ajax({
+	    url: '/jquery.ajax', // 필수: 데이터를 요청할 서버의 주소
+	    method: 'POST', 
+	    data: {       
+	        menu: '짜장'
+	    },
+	    dataType: 'json', // 서버로부터 예상하는 응답 데이터 타입 ('json', 'xml', 'html', 'text', 'script')
+	    success: function(resp) { // 요청 성공 시 실행될 콜백 함수
+	        console.log('성공:', resp);
+	        // 응답 데이터를 사용하여 UI 업데이트 등
+	    }
+	    
+	});
+}
+</script>
+</head>
+<body>
+	AJAX JQUERY<br/>
+	<a href="javascript:fn_ajax()">ajax호출</a>
+</body>
+</html>

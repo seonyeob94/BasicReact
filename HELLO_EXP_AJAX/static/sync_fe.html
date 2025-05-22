@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+    async function fn_ajax() {
+    	let a =0;
+    	let b =0;
+    	let c =0;
+      await fetch('/one.ajax', {
+        method: 'GET',                     // GET은 대문자로 해 주세요
+	    async: false
+        
+       
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();  // JSON 파싱
+      })
+      .then(data => {
+        // 메시지를 표시할 <div>를 미리 만들어 두고, 그걸 가져다 씁니다.
+    	  a= data.cnt
+    	  console.log('a성공:', a);
+      })
+      await fetch('/two.ajax', {
+        method: 'GET',                     // GET은 대문자로 해 주세요
+	    async: false
+        
+       
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();  // JSON 파싱
+      })
+      .then(data => {
+        // 메시지를 표시할 <div>를 미리 만들어 두고, 그걸 가져다 씁니다.
+    	  b= data.cnt
+    	  console.log('b성공:', b);
+      })
+      
+    c= a+b;
+	  console.log('c성공:', c);
+    }
+  </script>
+</head>
+<body>
+	AJAX AXIOS<br/>
+	<a href="javascript:fn_ajax()">ajax호출</a>
+</body>
+</html>
