@@ -1,12 +1,13 @@
 <script>
 
-import Morning from "./lib/Morning.svelte";
+
+import Holl from "./lib/Holl.svelte";
 </script>
 
 <main>
 
 
-  <Morning/>
+  <Holl/>
 
 
 </main>

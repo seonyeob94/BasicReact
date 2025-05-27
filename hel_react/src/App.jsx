@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import Morning from "./Morning.jsx";
+
+import Holl from "./Holl.jsx";
 
 
 
@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-         <Morning/>
+         <Holl/>
 
     </>
   )
