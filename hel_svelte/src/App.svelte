@@ -1,13 +1,11 @@
 <script>
 
 
-import Holl from "./lib/Holl.svelte";
+import UpDw from "./lib/UpDw.svelte";
 </script>
 
 <main>
-
-
-  <Holl/>
+ <UpDw/>
 
 
 </main>

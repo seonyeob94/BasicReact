@@ -1,11 +1,16 @@
 <script setup>
 
+import {ref} from 'vue'
+import Life01 from "./components/Life01.vue";
+import Life02 from "./components/Life02.vue";
+import UpDw from "./components/UpDw.vue";
 
-import Holl from "./components/Holl.vue";
+
 </script>
 
 <template>
-  <Holl />
+  <UpDw/>
+
 </template>
 
 <style scoped>

@@ -2,31 +2,35 @@ import { useState } from 'react'
 import "./Holl.css"
 
 function Holl() {
-  const [mine, setMine] = useState("..")
+  const [mine, setMine] = useState(".")
   const [com, setCom] = useState("..")
-  const [res, setRes] = useState("..")
+  const [res, setRes] = useState("...")
 
   const myclick=()=>{
          let rnd = Math.random();
-         let newcom;
+         let _com;
          console.log(rnd)
 		if(rnd>0.5){
-            newcom="홀";
+            _com="홀";
         }
 		else{
-             newcom="짝";
+             _com="짝";
         }
 
-        setCom(newcom)
+      let _res=""
       console.log("mine"+mine)
       console.log("com"+com)
+      console.log("_com"+_com)
+		if(mine==_com){
 
-		if(mine==newcom){
-            setRes("이김");
-		}
+            _res="이김";
+        }
 		else{
-			setRes("짐");
-		}
+            _res="짐";
+        }
+
+        setCom(_com)
+        setRes(_res)
   }
 
 

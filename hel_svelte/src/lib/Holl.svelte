@@ -1,7 +1,7 @@
 <script>
-    let mine = ""
-    let com = ""
-    let res = ""
+    let mine = "."
+    let com = ".."
+    let res = "..."
     const myclick = () => {
         var rnd = Math.random();
 		if(rnd>0.5){

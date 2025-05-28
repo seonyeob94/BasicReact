@@ -1,5 +1,7 @@
 
-import Holl from "./Holl.jsx";
+
+
+import UpDw from "./UpDw.jsx";
 
 
 
@@ -7,7 +9,7 @@ function App() {
 
   return (
     <>
-         <Holl/>
+         <UpDw/>
 
     </>
   )

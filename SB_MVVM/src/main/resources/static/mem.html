@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="shortcut icon" href="#" />
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script type="text/javascript">
+let memList = [];   // 전역에 담아둘 배열
+function clearForm(){
+	let o_m_id=document.getElementById('m_id');
+    let o_m_name=document.getElementById('m_name');
+    let o_tel=document.getElementById('tel');
+    let o_email=document.getElementById('email');
+    
+    o_m_id.value	= "";
+    o_m_name.value 	= "";
+    o_tel.value 	= "";
+    o_email.value 	= "";
+}
+
+function fn_del(){
+	const vo = {
+			m_id:   document.getElementById('m_id').value.trim(),
+			m_name: document.getElementById('m_name').value,
+		    tel:    document.getElementById('tel').value,
+		    email:  document.getElementById('email').value
+		  };
+	if(confirm("한번 지워진 데이터는 복구 불가능합니다.\n정말 삭제하겠습니까?")){
+		axios.post('/api/mem_del', vo)
+		.then(function (resp) {
+		    // 성공했을 때
+		    console.log('입력 완료', resp.data)
+		   	if(resp.data==1){
+		   		alert("삭제가 완료되었습니다");
+		   	}else{
+		   		alert("삭제 중 오류가 생겼습니다");
+		   	}
+		    clearForm();
+		    fn_list();
+	     
+		  })
+		  .catch(err => {
+		      console.error('삭제 중 오류:', err);
+		    
+			   		alert("삭제 중 오류가 생겼습니다");
+			   	
+		    });
+	}
+}
+ 
+ function fn_mod(){
+	 const vo = {
+				m_id:   document.getElementById('m_id').value.trim(),
+				m_name: document.getElementById('m_name').value,
+			    tel:    document.getElementById('tel').value,
+			    email:  document.getElementById('email').value
+			  };
+	 
+	 axios.post('/api/mem_mod', vo)
+		.then(function (resp) {
+		    // 성공했을 때
+		    console.log('입력 완료', resp.data)
+		   	if(resp.data==1){
+		   		alert("수정이 완료되었습니다");
+		   	}else{
+		   		alert("수정 중 오류가 생겼습니다");
+		   	}
+		    clearForm();
+		    fn_list();
+	     
+		  })
+		  .catch(err => {
+		      console.error('수정 중 오류:', err);
+		    
+			   		alert("수정 중 오류가 생겼습니다");
+			   	
+		    });
+	 
+ }
+ function fn_add(){
+	const vo = {
+			m_id:   document.getElementById('m_id').value.trim(),
+			m_name: document.getElementById('m_name').value,
+		    tel:    document.getElementById('tel').value,
+		    email:  document.getElementById('email').value
+		  };
+	
+	// 2) e_id가 빈 문자열이면 경고 후 중단
+	  if (!vo.m_id) {
+	    alert("사번을 입력해주세요.");
+	    document.getElementById('m_id').focus();
+	    return;
+	  }
+
+	  // 3) 이미 존재하는 e_id인지 확인
+	  if (memList.some(mem => mem.m_id === vo.m_id)) {
+	    alert("이미 있는 사번입니다.");
+	    document.getElementById('m_id').focus();
+	    return;
+	  }
+	
+	axios.post('/api/mem_add', vo)
+	.then(function (resp) {
+	    // 성공했을 때
+	    console.log('입력 완료', resp.data)
+	   	if(resp.data==1){
+	   		alert("입력이 완료되었습니다");
+	   	}else{
+	   		alert("입력 중 오류가 생겼습니다");
+	   	}
+	    clearForm();
+	    fn_list();
+     
+	  })
+	  .catch(err => {
+	      console.error('입력 중 오류:', err);
+	     
+		   		alert("입력 중 오류가 생겼습니다");
+		   	
+	    });
+} 
+
+function fn_one(m_id){
+	axios.get('/api/mem_detail', {
+		  params: { m_id : m_id }})
+	.then(function (resp) {
+	    // 성공했을 때
+	    console.log("vo : ", resp.data.vo);
+	    
+
+	    const vo = resp.data; 
+	    let o_m_id=document.getElementById('m_id');
+	    let o_m_name=document.getElementById('m_name');
+	    let o_tel=document.getElementById('tel');
+	    let o_email=document.getElementById('email');
+      
+	    o_m_id.value	= vo.m_id;
+	    o_m_name.value 	= vo.m_name;
+	    o_tel.value 	= vo.tel;
+	    o_email.value 	= vo.email;
+   
+	  })
+}
+function fn_list(){
+	axios.get('/api/mem_list')
+	.then(function (resp) {
+	    // 성공했을 때
+	    console.log(resp);
+	    const list = resp.data;    // 서버에서 보낸 배열
+	    memList = list;
+		
+	    const tbody = document.getElementById('my_tbody'); //배열을 넣을 테이블
+        tbody.innerHTML = '';  
+        
+        list.forEach(mem => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td><a href="javascript:fn_one('${mem.m_id}')">${mem.m_id}</a></td>
+              <td>${mem.m_name}</td>
+              <td>${mem.tel}</td>
+              <td>${mem.email}</td>
+            `;
+            tbody.appendChild(tr);
+        })    
+	  })
+}
+</script>
+</head>
+<body onload="fn_list()">
+	MEM 화면
+
+
+	<table border="1">
+		<thead>
+			<tr>
+				<td>사번</td>
+				<td>이름</td>
+				<td>전화</td>
+				<td>메일</td>
+			</tr>
+		</thead>
+		<tbody id="my_tbody">
+			<tr>
+				<td colspan="4">데이터가 없어유</td>
+			</tr>
+		</tbody>
+	</table>
+	<br />
+	<table border="1">
+		<tbody>
+			<tr>
+				<td>사번</td>
+				<td><input type="text" id="m_id" /></td>
+			</tr>
+			<tr>
+				<td>이름</td>
+				<td><input type="text" id="m_name" /></td>
+			</tr>
+			<tr>
+				<td>전화</td>
+				<td><input type="text" id="tel" /></td>
+			</tr>
+			<tr>
+				<td>이메일</td>
+				<td><input type="text" id="email" /></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="button" value="추가"
+					onclick="fn_add()" /> <input type="button" value="수정"
+					onclick="fn_mod()" /> <input type="button" value="삭제"
+					onclick="fn_del()" /></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

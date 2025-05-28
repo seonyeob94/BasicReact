@@ -1,0 +1,11 @@
+table, tr, td {
+        border: 1px solid black;
+    }
+
+    input[type='text'] {
+        width: 30px;
+    }
+
+    #mydiv {
+        height: 150px;
+    }

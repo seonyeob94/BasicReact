@@ -2,9 +2,10 @@
 import {ref} from 'vue'
 
 
-const mine = ref("..")
-const com = ref("..")
-const res = ref("..")
+let mine = ref(".")
+let com = ref("..")
+let res = ref("...")
+
 const myclick = () =>{
     let rnd = Math.random();
 		if(rnd>0.5){
