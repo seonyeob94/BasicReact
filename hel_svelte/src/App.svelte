@@ -1,11 +1,13 @@
 <script>
 
 
-import UpDw from "./lib/UpDw.svelte";
+import Strike from "./lib/Strike.svelte";
+import MyProp from "./lib/MyProp.svelte";
+import image0Url from './assets/0.png';
 </script>
 
 <main>
- <UpDw/>
+<MyProp alt="0,0" src={image0Url}/>
 
 
 </main>

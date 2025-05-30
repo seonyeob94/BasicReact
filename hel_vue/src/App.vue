@@ -1,15 +1,14 @@
 <script setup>
 
-import {ref} from 'vue'
-import Life01 from "./components/Life01.vue";
-import Life02 from "./components/Life02.vue";
-import UpDw from "./components/UpDw.vue";
+
+import Myfocus from "./components/Myfocus.vue";
+import MyProp from "./components/MyProp.vue";
 
 
 </script>
 
 <template>
-  <UpDw/>
+  <MyProp alt="1,1"/>
 
 </template>
 

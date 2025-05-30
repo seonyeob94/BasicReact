@@ -1,0 +1,9 @@
+ input[type=text]{
+        width: 40px;
+    }
+    div{
+        height: 170px;
+    }
+    table,td,tr{
+        border: 1px solid aqua;
+    }

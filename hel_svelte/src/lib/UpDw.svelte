@@ -1,8 +1,9 @@
 <script>
 
     let com = Math.floor(Math.random() * 99 + 1);
-    let mine =".."
+    let mine =""
     let res = ""
+    let count = 0;
     console.log(com)
     const myclick = () => {
         let imine= Math.floor(mine)
@@ -12,7 +13,7 @@
             line = mine + "은(는)\t" + "정답\n";
             res+=line
              setTimeout(()=>{
-                 alert(mine + " 정답입니다")
+                 alert(mine +" : " + count + "번 시도에 정답을 맞췄습니다")
              },100)
 
         } else if (com > imine) {
@@ -22,7 +23,7 @@
             line = mine + "은(는)\t" + "크다\n";
             res+=line
         }
-
+        count++;
 
     }
 
@@ -38,7 +39,7 @@
     </tr>
     <tr>
       <td colspan="2">
-        <input type="button" value="맞춰보기" on:click={myclick}>
+        <input type="button" value="맞춰보기" onclick={myclick}>
       </td>
     </tr>
     <tr>
