@@ -1,18 +1,14 @@
-
+// MyProp.jsx
 import React from 'react';
 
-
-function MyProp(props) {
-
-  const { alt } = props;
-
+function MyProp({ alt, src }) {
   return (
-    <div style={{ /* 스타일 */ }}>
-      속성: <strong>{alt}</strong> {/* 추출한 'alt' 값 사용 */}
-    </div>
+      <>
+      속성: {alt}
+        <img src={src} />
+
+      </>
   );
 }
-
-
 
 export default MyProp;

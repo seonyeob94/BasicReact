@@ -12,7 +12,7 @@ function Strike() {
         const temp = [];
         while (temp.length < 3) {
 
-            const rand = Math.floor(Math.random() * 10);
+            const rand = Math.floor(Math.random() * 9+1);
             if (!temp.includes(rand)) temp.push(rand);
 
         }
@@ -43,7 +43,7 @@ function Strike() {
 
         if (cnt > 2) {
             setTimeout(() => {
-                alert('🎉 정답입니다!');
+                alert('정답입니다!');
             }, 50);
         }
     }

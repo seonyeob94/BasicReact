@@ -1,14 +1,22 @@
 <script setup>
 
+import {ref} from "vue";
+import MyInput from "./components/MyInput.vue";
 
-import Myfocus from "./components/Myfocus.vue";
-import MyProp from "./components/MyProp.vue";
+const obj = ref(null);
+const val = ref('hello')
 
+const myclick=()=>{
+  obj.value.value = "bye"
+  val.value = 'bye'
+}
 
 </script>
 
 <template>
-  <MyProp alt="1,1"/>
+  <input type="text" value="hello" ref="obj"/>
+  <MyInput v-bind:value="val" ref="obj_value"/>
+  <button @click="myclick">change Text</button>
 
 </template>
 

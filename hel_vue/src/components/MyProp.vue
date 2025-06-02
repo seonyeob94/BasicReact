@@ -1,14 +1,23 @@
 <script setup>
 import { defineProps } from 'vue';
 const props = defineProps({
-  alt: String // 'alt'라는 이름의 String 타입 속성
-});
+  alt: {
+    type: String,
+    default: ''         // 필요시 기본값
+  },
+  src: {
+    type: String,
+    required: true      // 필수 prop
+  }
+})
+
 
 </script>
 
 <template>
  속성:<strong>{{ alt }}</strong>
-
+<img    :src="src"
+  />
 </template>
 
 <style scoped>

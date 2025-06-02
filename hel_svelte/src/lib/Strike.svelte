@@ -8,7 +8,7 @@ onMount(()=>{
 	 arr=[];
 		while(arr.length<3){
 
-			const rand = Math.floor(Math.random()*10);
+			const rand = Math.floor(Math.random()*9+1);
 			if(!arr.includes(rand)) arr.push(rand);
 
 		}
@@ -40,7 +40,7 @@ const myclick = ()=>{
 
 	if(cnt>2){
 			 setTimeout(() => {
-				    alert('🎉 정답입니다!');
+				    alert('정답입니다!');
 				  }, 50);
 		}
 }
@@ -53,12 +53,12 @@ const myclick = ()=>{
 		<tr>
 			<td>맞출수</td>
 			<td>
-				<input type="text" bind:value={num}>
+				<input type="text" bind:value={num} />
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input type="button" value="맞춰보기" on:click={myclick}>
+				<input type="button" value="맞춰보기" onclick={myclick} />
 			</td>
 		</tr>
 		<tr>

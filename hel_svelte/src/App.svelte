@@ -1,13 +1,20 @@
 <script>
 
+import MyInput from "./lib/MyInput.svelte";
 
-import Strike from "./lib/Strike.svelte";
-import MyProp from "./lib/MyProp.svelte";
-import image0Url from './assets/0.png';
+let obj = null;
+let text = "hello";
+
+const myclick = () =>{
+    obj.value = "bye"
+    text="bye"
+}
 </script>
 
 <main>
-<MyProp alt="0,0" src={image0Url}/>
+    <input type="text" value="hello" bind:this={obj}/><br/>
+    <MyInput value={text} /><br/>
+    <button onclick={myclick}>change Text</button><br/>
 
 
 </main>
