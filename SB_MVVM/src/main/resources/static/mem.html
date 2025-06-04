@@ -28,11 +28,11 @@ function fn_del(){
 		    email:  document.getElementById('email').value
 		  };
 	if(confirm("한번 지워진 데이터는 복구 불가능합니다.\n정말 삭제하겠습니까?")){
-		axios.post('/api/mem_del', vo)
-		.then(function (resp) {
+		axios.post('/api/mem_del', vo).then(function (resp) {
+			let cnt = resp.data.cnt;
 		    // 성공했을 때
 		    console.log('입력 완료', resp.data)
-		   	if(resp.data==1){
+		   	if(cnt==1){
 		   		alert("삭제가 완료되었습니다");
 		   	}else{
 		   		alert("삭제 중 오류가 생겼습니다");
@@ -58,11 +58,12 @@ function fn_del(){
 			    email:  document.getElementById('email').value
 			  };
 	 
-	 axios.post('/api/mem_mod', vo)
-		.then(function (resp) {
+	 axios.post('/api/mem_mod', vo)	.then(function (resp) {
+			let cnt = resp.data.cnt;
 		    // 성공했을 때
 		    console.log('입력 완료', resp.data)
-		   	if(resp.data==1){
+		    
+		   	if(cnt==1){
 		   		alert("수정이 완료되었습니다");
 		   	}else{
 		   		alert("수정 중 오류가 생겼습니다");
@@ -101,11 +102,11 @@ function fn_del(){
 	    return;
 	  }
 	
-	axios.post('/api/mem_add', vo)
-	.then(function (resp) {
+	axios.post('/api/mem_add', vo).then(function (resp) {
+		let cnt = resp.data.cnt;
 	    // 성공했을 때
-	    console.log('입력 완료', resp.data)
-	   	if(resp.data==1){
+	    console.log('입력 완료', cnt)
+	   	if(cnt==1){
 	   		alert("입력이 완료되었습니다");
 	   	}else{
 	   		alert("입력 중 오류가 생겼습니다");
@@ -130,12 +131,12 @@ function fn_one(m_id){
 	    console.log("vo : ", resp.data.vo);
 	    
 
-	    const vo = resp.data; 
 	    let o_m_id=document.getElementById('m_id');
 	    let o_m_name=document.getElementById('m_name');
 	    let o_tel=document.getElementById('tel');
 	    let o_email=document.getElementById('email');
       
+	    let vo = resp.data.vo; 
 	    o_m_id.value	= vo.m_id;
 	    o_m_name.value 	= vo.m_name;
 	    o_tel.value 	= vo.tel;
@@ -144,11 +145,10 @@ function fn_one(m_id){
 	  })
 }
 function fn_list(){
-	axios.get('/api/mem_list')
-	.then(function (resp) {
+	axios.get('/api/mem_list').then(function (resp) {
 	    // 성공했을 때
 	    console.log(resp);
-	    const list = resp.data;    // 서버에서 보낸 배열
+	    let list = resp.data.list;    // 서버에서 보낸 배열
 	    memList = list;
 		
 	    const tbody = document.getElementById('my_tbody'); //배열을 넣을 테이블

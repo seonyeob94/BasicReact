@@ -45,31 +45,35 @@
         }
 
         let resp = await axios.post('http://localhost:8080/api/mem_add', vo)
-        if (resp.data === 1) {
+        let cnt = resp.data.cnt
+
+        if (cnt === 1) {
             alert("추가 완료!");
+            fn_list()
         } else {
             alert("추가 실패!");
         }
         fn_clear();
-        await fn_list()
     }
 
     const fn_mod = async () => {
         let resp = await axios.post('http://localhost:8080/api/mem_mod', vo)
-        if (resp.data === 1) {
+        let cnt = resp.data.cnt
+        if (cnt.data === 1) {
             alert("수정 완료!");
+            fn_list()
         } else {
             alert("수정 실패!");
         }
         fn_clear();
-        await fn_list()
     }
 
     const fn_del = async () => {
         if (confirm("한번 지워진 데이터는 복구 불가능합니다.\n정말 삭제하겠습니까?")) {
 
             let resp = await axios.post('http://localhost:8080/api/mem_del', vo)
-            if (resp.data === 1) {
+            let cnt = resp.data.cnt
+            if (cnt.data === 1) {
                 alert("삭제 완료!");
             } else {
                 alert("삭제 실패!");

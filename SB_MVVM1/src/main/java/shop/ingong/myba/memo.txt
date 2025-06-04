@@ -1,0 +1,11 @@
+공유폴더
+
+\\405SEM-PC\gongyu
+
+\\192.168.145.44\gongyu
+
+405SEM-PC
+java
+
+SEM-PC
+java

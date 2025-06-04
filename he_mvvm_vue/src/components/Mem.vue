@@ -45,13 +45,15 @@ const fn_add = async () => {
   }
 
   const resp = await axios.post('http://localhost:8080/api/mem_add', vo.value);
+   let cnt = resp.data.cnt
   console.log("추가 결과", resp.data)
-  if (resp.data === 1) {
+
+  if (cnt === 1) {
     alert("추가 완료!");
   } else {
     alert("추가 실패!");
   }
-  fn_claer();
+  fn_clear();
   await fn_list()
 }
 const fn_mod = async () => {
@@ -62,7 +64,7 @@ const fn_mod = async () => {
   } else {
     alert("수정 실패!");
   }
-  fn_claer()
+  fn_clear()
   await fn_list()
 }
 
@@ -76,12 +78,12 @@ const fn_del = async () => {
     }
   }
 
-  fn_claer()
+  fn_clear()
   await fn_list()
 
 }
 
-const fn_claer = () => {
+const fn_clear = () => {
   vo.value = {m_id: "", m_name: "", tel: "", email: ""};
 }
 </script>

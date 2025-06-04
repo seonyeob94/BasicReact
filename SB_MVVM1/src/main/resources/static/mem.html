@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="text/javascript">
+function fn_list(){
+	axios.get('/mem_list.ajax').then(function(resp) {
+		
+		console.log(resp);
+		
+		let obj_tbody = document.getElementById("my_tbody");
+		let list = resp.data.list;
+		
+		let txt = ``;
+		
+		for(let i=0;i<list.length;i++){
+			let vo = list[i];
+			let m_id = vo.m_id;
+			let m_name = vo.m_name;
+			let tel = vo.tel;
+			let email = vo.email;
+			txt += `
+				<tr>
+					<td><a href='javascript:fn_one("${m_id}")'>${m_id}</a></td>
+					<td>${m_name}</td>
+					<td>${tel}</td>
+					<td>${email}</td>
+				</tr>
+			`;
+		}
+		obj_tbody.innerHTML = txt;
+	})
+}
+
+function fn_one(m_id){
+	axios.get('/mem_detail.ajax', {
+        params: {
+        	m_id:m_id
+        }
+    }).then(function(resp) {
+		console.log(resp);
+    	let obj_m_id	= document.getElementById("m_id");
+    	let obj_m_name	= document.getElementById("m_name");
+    	let obj_tel		= document.getElementById("tel");
+    	let obj_email	= document.getElementById("email");
+    	
+    	let vo = resp.data.vo;
+    	obj_m_id.value = vo.m_id;
+    	obj_m_name.value = vo.m_name;
+    	obj_tel.value = vo.tel;
+    	obj_email.value = vo.email;
+	})
+}
+
+
+function fn_add(){
+	let obj_m_id	= document.getElementById("m_id");
+	let obj_m_name	= document.getElementById("m_name");
+	let obj_tel		= document.getElementById("tel");
+	let obj_email	= document.getElementById("email");
+	
+	let params = {
+		m_id : obj_m_id.value,
+		m_name : obj_m_name.value,
+		tel : obj_tel.value,
+		email : obj_email.value
+	}
+	
+	console.log(params);
+	
+	axios.post('/mem_add.ajax', params).then(function(resp) {
+    	let cnt = resp.data.cnt;
+    	if(cnt==1){
+    		alert("정상적으로 추가되었습니다.");
+    		fn_list();
+        	obj_m_id.value = "";
+        	obj_m_name.value = "";
+        	obj_tel.value = "";
+        	obj_email.value = "";
+    		
+    	} else {
+    		alert("추가도중 문제가 생겼습니다.");
+    	}
+	})
+}
+
+function fn_mod(){
+	let obj_m_id	= document.getElementById("m_id");
+	let obj_m_name	= document.getElementById("m_name");
+	let obj_tel		= document.getElementById("tel");
+	let obj_email	= document.getElementById("email");
+	
+	let params = {
+		m_id : obj_m_id.value,
+		m_name : obj_m_name.value,
+		tel : obj_tel.value,
+		email : obj_email.value
+	}
+	
+	console.log(params);
+	
+	axios.post('/mem_mod.ajax', params).then(function(resp) {
+    	let cnt = resp.data.cnt;
+    	if(cnt==1){
+    		alert("정상적으로 수정되었습니다.");
+    		fn_list();
+        	obj_m_id.value = "";
+        	obj_m_name.value = "";
+        	obj_tel.value = "";
+        	obj_email.value = "";
+    		
+    	} else {
+    		alert("수정도중 문제가 생겼습니다.");
+    	}
+	})
+}
+
+
+function fn_del(){
+	let obj_m_id	= document.getElementById("m_id");
+	let obj_m_name	= document.getElementById("m_name");
+	let obj_tel		= document.getElementById("tel");
+	let obj_email	= document.getElementById("email");
+	
+	let flag_c = confirm("한번 지워진 데이터는 복구불가합니다.\n삭제하시렵니까?");
+	if(!flag_c){
+		return
+	}
+	
+	
+	let params = {
+		m_id : obj_m_id.value,
+		m_name : obj_m_name.value,
+		tel : obj_tel.value,
+		email : obj_email.value
+	}
+	
+	console.log(params);
+	
+	axios.post('/mem_del.ajax', params).then(function(resp) {
+    	let cnt = resp.data.cnt;
+    	if(cnt==1){
+    		alert("정상적으로 삭제되었습니다.");
+    		fn_list();
+        	obj_m_id.value = "";
+        	obj_m_name.value = "";
+        	obj_tel.value = "";
+        	obj_email.value = "";
+    		
+    	} else {
+    		alert("삭제도중 문제가 생겼습니다.");
+    	}
+	})
+	
+}
+
+</script>
+</head>
+<body onload="fn_list()">
+EMP 화면
+<table border="1px">
+	<thead>
+		<tr>
+			<td>사번</td>
+			<td>이름</td>
+			<td>성별</td>
+			<td>주소</td>
+		</tr>
+	</thead>
+	<tbody id="my_tbody">
+		<tr>
+			<td colspan="4">
+				데이터가 없어유
+			</td>
+		</tr>
+	</tbody>
+</table>
+<table border="1px">
+	<tbody>
+		<tr>
+			<td>사번</td>
+			<td>
+				<input type="text" id="m_id" />
+			</td>
+		</tr>
+		<tr>
+			<td>이름</td>
+			<td>
+				<input type="text" id="m_name" />
+			</td>
+		</tr>
+		<tr>
+			<td>전화번호</td>
+			<td>
+				<input type="text" id="tel" />
+			</td>
+		</tr>
+		<tr>
+			<td>이메일</td>
+			<td>
+				<input type="text" id="email" />
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="button" value="추가" onclick="fn_add()" />
+				<input type="button" value="수정" onclick="fn_mod()" />
+				<input type="button" value="삭제" onclick="fn_del()" />
+			</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>
