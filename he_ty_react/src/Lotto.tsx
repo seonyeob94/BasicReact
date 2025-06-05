@@ -1,10 +1,9 @@
 import {useState} from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './Lotto.css'
 
 function Lotto() {
-    const [nums, setNums] = useState<String[]>(Array(6).fill("--"))
+    const [nums, setNums] = useState<string[]>(Array(6).fill("--"))
 
     const myclick = () => {
 
@@ -12,7 +11,7 @@ function Lotto() {
         const arr: number[] = [];
         while (arr.length < 6) {
 
-            let rand:number = Math.floor(Math.random() * 45 + 1);
+            const rand:number = Math.floor(Math.random() * 45 + 1);
             if (!arr.includes(rand)) arr.push(rand);
 
         }
